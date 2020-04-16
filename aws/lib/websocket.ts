@@ -100,7 +100,7 @@ export class WebSocketStack extends cdk.Stack {
             protocolType: "WEBSOCKET",
             routeSelectionExpression: "$request.body.message",
         };
-        let api = new apigatewayv2.CfnApi(this, "Web", v2Props)
+        let api = new apigatewayv2.CfnApi(this, "ApigatewayWebsocket", v2Props)
 
         let authorizerFunc = this.createLambda(api, "authorizer", "websocket.authorizer", this.setting.codeSource);
         let authorizer = this.createAuthorizer(api, authorizerFunc);
