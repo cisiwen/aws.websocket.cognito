@@ -1,0 +1,53 @@
+{
+  "name": "aws.websocket.cognito",
+  "version": "1.0.0",
+  "description": "aws api gateway websocket with custom authorizer",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cisiwen/aws.websocket.cognito.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cisiwen/aws.websocket.cognito/issues"
+  },
+  "homepage": "https://github.com/cisiwen/aws.websocket.cognito#readme",
+  "dependencies": {
+    "@aws-cdk/aws-apigatewayv2": "^1.32.2",
+    "@aws-cdk/aws-iam": "^1.32.2",
+    "@types/jsonwebtoken": "^8.3.9",
+    "aws-sdk": "^2.647.0",
+    "jsonwebtoken": "^8.5.1",
+    "jwk-to-pem": "^2.0.3"
+  },
+  "devDependencies": {
+    "@aws-cdk/aws-apigateway": "^1.32.2",
+    "@aws-cdk/aws-dynamodb": "^1.32.2",
+    "@aws-cdk/aws-ec2": "^1.32.2",
+    "@aws-cdk/aws-events": "^1.32.2",
+    "@aws-cdk/aws-events-targets": "^1.32.2",
+    "@aws-cdk/aws-lambda": "^1.32.2",
+    "@aws-cdk/aws-lambda-event-sources": "^1.32.2",
+    "@aws-cdk/aws-logs": "^1.32.2",
+    "@aws-cdk/aws-sns": "^1.32.2",
+    "@aws-cdk/aws-sqs": "^1.32.2",
+    "@aws-cdk/aws-stepfunctions-tasks": "^1.32.2",
+    "@aws-cdk/core": "^1.32.2",
+    "@types/aws-lambda": "^8.10.37",
+    "@types/chai": "^4.2.6",
+    "@types/mocha": "^5.2.7",
+    "@types/node": "^12.12.16",
+    "@types/request-promise-native": "^1.0.17",
+    "aws-cdk": "^1.32.2",
+    "aws-xray-sdk-core": "^2.5.0",
+    "chai": "^4.2.0",
+    "eslint": "^6.6.0",
+    "mocha": "^6.2.2",
+    "ts-mocha": "^6.0.0",
+    "typescript": "^3.8.3"
+  }
+}

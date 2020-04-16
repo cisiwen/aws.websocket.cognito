@@ -1,0 +1,996 @@
+{
+  "Description": "Live streaming controller websocket staging",
+  "Resources": {
+    "ConnectionsTable8000B8A1": {
+      "Type": "AWS::DynamoDB::Table",
+      "Properties": {
+        "KeySchema": [
+          {
+            "AttributeName": "id",
+            "KeyType": "HASH"
+          }
+        ],
+        "AttributeDefinitions": [
+          {
+            "AttributeName": "id",
+            "AttributeType": "S"
+          }
+        ],
+        "ProvisionedThroughput": {
+          "ReadCapacityUnits": 5,
+          "WriteCapacityUnits": 5
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/ConnectionsTable/Resource"
+      }
+    },
+    "Web": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "Name": "staging-liveStreamControllerWebSocket",
+        "ProtocolType": "WEBSOCKET",
+        "RouteSelectionExpression": "$request.body.message"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/Web"
+      }
+    },
+    "authorizerServiceRoleC3069BB4": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/authorizer/ServiceRole/Resource"
+      }
+    },
+    "authorizerServiceRoleDefaultPolicyABE8B38C": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ConnectionsTable8000B8A1",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": "execute-api:ManageConnections",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                    {
+                      "Ref": "Web"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "authorizerServiceRoleDefaultPolicyABE8B38C",
+        "Roles": [
+          {
+            "Ref": "authorizerServiceRoleC3069BB4"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/authorizer/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "authorizerD23CB5CD": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3Bucket4222ADF9"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "websocket.authorizer",
+        "Role": {
+          "Fn::GetAtt": [
+            "authorizerServiceRoleC3069BB4",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "ConnectionsTable8000B8A1"
+            }
+          }
+        },
+        "FunctionName": "authorizer"
+      },
+      "DependsOn": [
+        "authorizerServiceRoleDefaultPolicyABE8B38C",
+        "authorizerServiceRoleC3069BB4"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/authorizer/Resource",
+        "aws:asset:path": "asset.ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593",
+        "aws:asset:property": "Code"
+      }
+    },
+    "authorizerInvokeServicePrincipalapigatewayamazonawscom51DEC98E": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "authorizerD23CB5CD",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/authorizer/InvokeServicePrincipal(apigateway.amazonaws.com)"
+      }
+    },
+    "ApiGatewayCognitoAuthorizer": {
+      "Type": "AWS::ApiGatewayV2::Authorizer",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "AuthorizerType": "REQUEST",
+        "IdentitySource": [
+          "$request.query.token"
+        ],
+        "Name": "CustomCognitoAuthorizer",
+        "AuthorizerUri": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+              {
+                "Fn::GetAtt": [
+                  "authorizerD23CB5CD",
+                  "Arn"
+                ]
+              },
+              "/invocations"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/ApiGatewayCognitoAuthorizer"
+      }
+    },
+    "OnConnectServiceRoleCE52AE06": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnConnect/ServiceRole/Resource"
+      }
+    },
+    "OnConnectServiceRoleDefaultPolicyB37A8C69": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ConnectionsTable8000B8A1",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": "execute-api:ManageConnections",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                    {
+                      "Ref": "Web"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "OnConnectServiceRoleDefaultPolicyB37A8C69",
+        "Roles": [
+          {
+            "Ref": "OnConnectServiceRoleCE52AE06"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnConnect/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "OnConnect5B7981D4": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3Bucket4222ADF9"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "websocket.onConnect",
+        "Role": {
+          "Fn::GetAtt": [
+            "OnConnectServiceRoleCE52AE06",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "ConnectionsTable8000B8A1"
+            }
+          }
+        },
+        "FunctionName": "OnConnect"
+      },
+      "DependsOn": [
+        "OnConnectServiceRoleDefaultPolicyB37A8C69",
+        "OnConnectServiceRoleCE52AE06"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnConnect/Resource",
+        "aws:asset:path": "asset.ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593",
+        "aws:asset:property": "Code"
+      }
+    },
+    "OnConnectInvokeServicePrincipalapigatewayamazonawscom2B44D7D9": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "OnConnect5B7981D4",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnConnect/InvokeServicePrincipal(apigateway.amazonaws.com)"
+      }
+    },
+    "ConnectRouteIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "Description": "",
+        "IntegrationUri": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+              {
+                "Fn::GetAtt": [
+                  "OnConnect5B7981D4",
+                  "Arn"
+                ]
+              },
+              "/invocations"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/ConnectRouteIntegration"
+      }
+    },
+    "ConnectRouteRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "RouteKey": "$connect",
+        "AuthorizationType": "CUSTOM",
+        "AuthorizerId": {
+          "Ref": "ApiGatewayCognitoAuthorizer"
+        },
+        "OperationName": "ConnectRoute",
+        "Target": {
+          "Fn::Join": [
+            "",
+            [
+              "/integrations/",
+              {
+                "Ref": "ConnectRouteIntegration"
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/ConnectRouteRoute"
+      }
+    },
+    "OnDisconnectServiceRole626BB7AE": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnDisconnect/ServiceRole/Resource"
+      }
+    },
+    "OnDisconnectServiceRoleDefaultPolicy06605459": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ConnectionsTable8000B8A1",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": "execute-api:ManageConnections",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                    {
+                      "Ref": "Web"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "OnDisconnectServiceRoleDefaultPolicy06605459",
+        "Roles": [
+          {
+            "Ref": "OnDisconnectServiceRole626BB7AE"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnDisconnect/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "OnDisconnectDDB1160C": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3Bucket4222ADF9"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "websocket.onDisconnect",
+        "Role": {
+          "Fn::GetAtt": [
+            "OnDisconnectServiceRole626BB7AE",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "ConnectionsTable8000B8A1"
+            }
+          }
+        },
+        "FunctionName": "OnDisconnect"
+      },
+      "DependsOn": [
+        "OnDisconnectServiceRoleDefaultPolicy06605459",
+        "OnDisconnectServiceRole626BB7AE"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnDisconnect/Resource",
+        "aws:asset:path": "asset.ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593",
+        "aws:asset:property": "Code"
+      }
+    },
+    "OnDisconnectInvokeServicePrincipalapigatewayamazonawscomAAEE492B": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "OnDisconnectDDB1160C",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnDisconnect/InvokeServicePrincipal(apigateway.amazonaws.com)"
+      }
+    },
+    "DisconnectRouteIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "Description": "",
+        "IntegrationUri": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+              {
+                "Fn::GetAtt": [
+                  "OnDisconnectDDB1160C",
+                  "Arn"
+                ]
+              },
+              "/invocations"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/DisconnectRouteIntegration"
+      }
+    },
+    "DisconnectRouteRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "RouteKey": "$disconnect",
+        "AuthorizationType": "CUSTOM",
+        "AuthorizerId": {
+          "Ref": "ApiGatewayCognitoAuthorizer"
+        },
+        "OperationName": "DisconnectRoute",
+        "Target": {
+          "Fn::Join": [
+            "",
+            [
+              "/integrations/",
+              {
+                "Ref": "DisconnectRouteIntegration"
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/DisconnectRouteRoute"
+      }
+    },
+    "OnMessageServiceRoleF2128E59": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessage/ServiceRole/Resource"
+      }
+    },
+    "OnMessageServiceRoleDefaultPolicy0810DFDA": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "dynamodb:BatchGetItem",
+                "dynamodb:GetRecords",
+                "dynamodb:GetShardIterator",
+                "dynamodb:Query",
+                "dynamodb:GetItem",
+                "dynamodb:Scan",
+                "dynamodb:BatchWriteItem",
+                "dynamodb:PutItem",
+                "dynamodb:UpdateItem",
+                "dynamodb:DeleteItem"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ConnectionsTable8000B8A1",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "AWS::NoValue"
+                }
+              ]
+            },
+            {
+              "Action": "execute-api:ManageConnections",
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                    {
+                      "Ref": "Web"
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "OnMessageServiceRoleDefaultPolicy0810DFDA",
+        "Roles": [
+          {
+            "Ref": "OnMessageServiceRoleF2128E59"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessage/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "OnMessageF7C2AAE0": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3Bucket4222ADF9"
+          },
+          "S3Key": {
+            "Fn::Join": [
+              "",
+              [
+                {
+                  "Fn::Select": [
+                    0,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "Fn::Select": [
+                    1,
+                    {
+                      "Fn::Split": [
+                        "||",
+                        {
+                          "Ref": "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            ]
+          }
+        },
+        "Handler": "websocket.onMessage",
+        "Role": {
+          "Fn::GetAtt": [
+            "OnMessageServiceRoleF2128E59",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs12.x",
+        "Environment": {
+          "Variables": {
+            "TABLE_NAME": {
+              "Ref": "ConnectionsTable8000B8A1"
+            }
+          }
+        },
+        "FunctionName": "OnMessage"
+      },
+      "DependsOn": [
+        "OnMessageServiceRoleDefaultPolicy0810DFDA",
+        "OnMessageServiceRoleF2128E59"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessage/Resource",
+        "aws:asset:path": "asset.ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593",
+        "aws:asset:property": "Code"
+      }
+    },
+    "OnMessageInvokeServicePrincipalapigatewayamazonawscom209E79CE": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "Action": "lambda:InvokeFunction",
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "OnMessageF7C2AAE0",
+            "Arn"
+          ]
+        },
+        "Principal": "apigateway.amazonaws.com"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessage/InvokeServicePrincipal(apigateway.amazonaws.com)"
+      }
+    },
+    "OnMessageRouteIntegration": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "IntegrationType": "AWS_PROXY",
+        "Description": "",
+        "IntegrationUri": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:apigateway:ap-southeast-2:lambda:path/2015-03-31/functions/",
+              {
+                "Fn::GetAtt": [
+                  "OnMessageF7C2AAE0",
+                  "Arn"
+                ]
+              },
+              "/invocations"
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessageRouteIntegration"
+      }
+    },
+    "OnMessageRouteRoute": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "Web"
+        },
+        "RouteKey": "sendmessage",
+        "AuthorizationType": "CUSTOM",
+        "AuthorizerId": {
+          "Ref": "ApiGatewayCognitoAuthorizer"
+        },
+        "OperationName": "OnMessageRoute",
+        "Target": {
+          "Fn::Join": [
+            "",
+            [
+              "/integrations/",
+              {
+                "Ref": "OnMessageRouteIntegration"
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Staging-LiveStreamController-Websocket/OnMessageRouteRoute"
+      }
+    }
+  },
+  "Outputs": {
+    "ConnectionsTableArn": {
+      "Description": "Connections table ARN",
+      "Value": {
+        "Fn::GetAtt": [
+          "ConnectionsTable8000B8A1",
+          "Arn"
+        ]
+      }
+    },
+    "WebSocketURI": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            "wss://",
+            {
+              "Ref": "Web"
+            },
+            ".execute-api.ap-southeast-2.amazonaws.com/"
+          ]
+        ]
+      }
+    }
+  },
+  "Parameters": {
+    "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3Bucket4222ADF9": {
+      "Type": "String",
+      "Description": "S3 bucket for asset \"ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593\""
+    },
+    "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593S3VersionKey2486680C": {
+      "Type": "String",
+      "Description": "S3 key for asset version \"ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593\""
+    },
+    "AssetParametersca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593ArtifactHash7F364B0E": {
+      "Type": "String",
+      "Description": "Artifact hash for asset \"ca7bcfdb902bd2a779a4f0f4fb43e1fe96e0cc193f86c9b97f4aa9187793d593\""
+    }
+  }
+}
