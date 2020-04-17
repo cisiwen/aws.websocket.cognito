@@ -29,18 +29,21 @@ export class WebSocketStack extends cdk.Stack {
     createLambda(api: CfnApi, name: string, handler: string, source: string): Function {
         let lambda = new Function(this, name, {
             runtime: Runtime.NODEJS_12_X,
-            functionName: name,
+            functionName: `${this.setting.environmentShort}-${this.setting.projectName}-${name}`.toLowerCase(),
             handler: handler,
             code: AssetCode.fromAsset(source),
             environment: {
-                TABLE_NAME: this.table.tableName
-            }
+                TABLE_NAME: this.table.tableName,
+                ENVIRONMENT: this.setting.environment
+            },
+            logRetention: 7
         });
         lambda.grantInvoke(new ServicePrincipal("apigateway.amazonaws.com"));
         if (lambda.role) {
             let role: IRole = lambda.role;
             this.table.grantReadWriteData(role);
         }
+
         lambda.addToRolePolicy(new PolicyStatement({
             effect: Effect.ALLOW,
             actions: ["execute-api:ManageConnections"],
@@ -49,10 +52,10 @@ export class WebSocketStack extends cdk.Stack {
         return lambda;
     }
 
-    addRoute(api: CfnApi, routeKey: string, operationName: string, func: Function, authorizer: CfnAuthorizer): CfnRoute {
+    addRoute(api: CfnApi, routeKey: string, operationName: string, func: Function, authorizer?: CfnAuthorizer): CfnRoute {
         let cfnIntegrationProps: CfnIntegrationProps = {
             apiId: api.ref,
-            description: "",
+            description: operationName,
             integrationType: "AWS_PROXY",
             integrationUri: `arn:aws:apigateway:${this.region}:lambda:path/2015-03-31/functions/${func.functionArn}/invocations`
         }
@@ -61,12 +64,13 @@ export class WebSocketStack extends cdk.Stack {
         let routeProps: CfnRouteProps = {
             apiId: api.ref,
             routeKey: routeKey,
-            authorizationType: "CUSTOM",
-            authorizerId: authorizer.ref,
+            authorizationType: authorizer ? "CUSTOM" : "NONE",
+            authorizerId: authorizer ? authorizer.ref : undefined,
             operationName: operationName,
-            target: `/integrations/${integration.ref}`
+            target: `integrations/${integration.ref}`
         };
         let route: CfnRoute = new CfnRoute(this, `${operationName}Route`, routeProps);
+        route.addDependsOn(integration);
         return route;
     }
 
@@ -76,11 +80,9 @@ export class WebSocketStack extends cdk.Stack {
             readCapacity: 5,
             writeCapacity: 5,
             serverSideEncryption: true,
-            tableName: `${this.setting.environmentShort}-${this.setting.projectName}`
+            tableName: `${this.setting.environmentShort}-${this.setting.projectName}`.toLowerCase()
         };
-        const table = new dynamodb.Table(this, 'ConnectionsTable', {
-            partitionKey: { name: 'id', type: dynamodb.AttributeType.STRING }
-        });
+        const table = new dynamodb.Table(this, 'ConnectionsTable', tableProps);
         new CfnOutput(this, "ConnectionsTableArn", { description: "Connections table ARN", value: table.tableArn });
         return table;
     }
@@ -96,22 +98,30 @@ export class WebSocketStack extends cdk.Stack {
     }
     createApiGateway() {
         let v2Props: CfnApiProps = {
-            name: `${this.setting.environmentShort}-${this.setting.projectName}`,
+            name: `${this.setting.environmentShort}-${this.setting.projectName}`.toLowerCase(),
             protocolType: "WEBSOCKET",
             routeSelectionExpression: "$request.body.message",
         };
         let api = new apigatewayv2.CfnApi(this, "ApigatewayWebsocket", v2Props)
 
+        let staging = new apigatewayv2.CfnStage(this, "ApigatewayWebsocketStage", {
+            apiId: api.ref,
+            description: `${this.setting.environment} Stage`,
+            stageName: this.setting.environmentShort,
+            autoDeploy: true
+        })
         let authorizerFunc = this.createLambda(api, "authorizer", "websocket.authorizer", this.setting.codeSource);
         let authorizer = this.createAuthorizer(api, authorizerFunc);
+
         let onConnectionFunc = this.createLambda(api, "OnConnect", "websocket.onConnect", this.setting.codeSource);
         let onConnectionRoute = this.addRoute(api, "$connect", "ConnectRoute", onConnectionFunc, authorizer);
 
         let disConnectionFunc = this.createLambda(api, "OnDisconnect", "websocket.onDisconnect", this.setting.codeSource);
-        let disConnectionRoute = this.addRoute(api, "$disconnect", "DisconnectRoute", disConnectionFunc, authorizer);
+        let disConnectionRoute = this.addRoute(api, "$disconnect", "DisconnectRoute", disConnectionFunc);
 
         let seneMessageFunc = this.createLambda(api, "OnMessage", "websocket.onMessage", this.setting.codeSource);
-        let sendMessageRoute = this.addRoute(api, "sendmessage", "OnMessageRoute", seneMessageFunc, authorizer);
+        let sendMessageRoute = this.addRoute(api, "sendmessage", "OnMessageRoute", seneMessageFunc);
+
         new CfnOutput(this, "WebSocketURI", { value: `wss://${api.ref}.execute-api.${this.region}.amazonaws.com/` })
     }
 }

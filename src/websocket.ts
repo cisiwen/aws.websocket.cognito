@@ -51,17 +51,19 @@ class WebSocketServer {
         this.log(event.requestContext.requestId, this.onConnect.name, event);
         const validateResult = this.validateRequest(event);
         if (validateResult.statusCode === 200) {
-            const putParams: PutItemInput = {
+            const putParams = {
                 TableName: this.tableName,
                 Item: {
-                    connectionId: { S: event?.requestContext?.connectionId }
+                    connectionId: event?.requestContext?.connectionId
                 }
             }
             try {
+                this.log(event.requestContext.requestId, this.onConnect.name, JSON.stringify(putParams), null, "db.put");
                 await this.db.put(putParams).promise();
                 return { statusCode: 200, body: 'Connected.' };
             }
             catch (err) {
+                this.log(event.requestContext.requestId, this.onConnect.name, event, err, "dbput", false);
                 return { statusCode: 500, body: 'Failed to connect: ' + JSON.stringify(err) };
             }
         }
@@ -75,10 +77,10 @@ class WebSocketServer {
         this.log(event.requestContext.requestId, this.onDisconnect.name, event);
         const validateResult = this.validateRequest(event);
         if (validateResult.statusCode === 200) {
-            const deleteParams: DeleteItemInput = {
+            const deleteParams = {
                 TableName: this.tableName,
                 Key: {
-                    connectionId: { S: event.requestContext.connectionId }
+                    connectionId: event.requestContext.connectionId
                 }
             };
             try {
@@ -86,6 +88,7 @@ class WebSocketServer {
                 return { statusCode: 200, body: 'Disconnected.' };
             }
             catch (err) {
+                this.log(event.requestContext.requestId, this.onDisconnect.name, event, err, "db.delete", false);
                 return { statusCode: 500, body: 'Failed to disconnect: ' + JSON.stringify(err) };
             }
         }
@@ -141,23 +144,46 @@ class WebSocketServer {
 
     async authorizer(event: APIGatewayRequestAuthorizerEvent): Promise<APIGatewayAuthorizerResult> {
 
-        //https://cognito-idp.{region}.amazonaws.com/{userPoolId}/.well-known/jwks.json
+        //https://cognito-idp.ap-southeast-2.amazonaws.com/ap-southeast-2_u1kt2UYXA/.well-known/jwks.json
         this.log(event.requestContext?.requestId, this.authorizer.name, event);
         return new Promise((ok, fail) => {
             let token = event?.queryStringParameters?.token;
             if (token) {
-                let jwk = JSON.parse(fs.readFileSync(`/assets/${process.env.ENVIRONMENT}.jwk`.toLowerCase()).toString());
-                const pem = jwkToPem(jwk);
-                jwt.verify(token, pem, (err: any, decoded: any) => {
-                    if (err) {
-                        this.log(event.requestContext?.requestId, this.authorizer.name, event, err, "verify", false);
-                        ok(this.generatePolicy("User", "Deny", event.methodArn));
-                    }
-                    else {
-                        ok(this.generatePolicy("User", "Allow", event.methodArn));
-                    }
+                let jwks = JSON.parse(fs.readFileSync(`assets/${process.env.ENVIRONMENT?.toLowerCase()}.jwk`.toLowerCase()).toString());
 
-                });
+                let pems: { [key: string]: any } = {};
+                let keys = jwks['keys'];
+                for (let i = 0; i < keys.length; i++) {
+                    let key_id = keys[i].kid;
+                    let modulus = keys[i].n;
+                    let exponent = keys[i].e;
+                    let key_type = keys[i].kty;
+                    let jwk = { kty: key_type, n: modulus, e: exponent };
+                    let pem = jwkToPem(jwk);
+                    pems[key_id] = pem;
+                }
+
+                let decodedJwt = jwt.decode(token, { complete: true });
+                if (!decodedJwt) {
+                    console.log("Not a valid JWT token");
+                    ok(this.generatePolicy("User", "Deny", event.methodArn));
+                }
+                else if (typeof (decodedJwt) != "string") {
+                    console.log("decodedJwt", decodedJwt);
+                    console.log("pems", pems);
+                    var kid = decodedJwt.header?.kid;
+                    var pem = pems[kid];
+                    jwt.verify(token, pem, (err: any, decoded: any) => {
+                        if (err) {
+                            this.log(event.requestContext?.requestId, this.authorizer.name, event, err, "verify", false);
+                            ok(this.generatePolicy("User", "Deny", event.methodArn));
+                        }
+                        else {
+                            ok(this.generatePolicy("User", "Allow", event.methodArn));
+                        }
+
+                    });
+                }
             }
             else {
                 ok(this.generatePolicy("User", "Deny", event.methodArn));
@@ -166,8 +192,8 @@ class WebSocketServer {
     }
 }
 
-const websocket = new WebSocketServer();
-module.exports.onConnect = websocket.onConnect.bind(websocket);
-module.exports.onDisconnect = websocket.onDisconnect.bind(websocket);
-module.exports.onMessage = websocket.onMessage.bind(websocket);
-module.exports.authorizer = websocket.authorizer.bind(websocket);
+export const WebSocketServerInstance = new WebSocketServer();
+module.exports.onConnect = WebSocketServerInstance.onConnect.bind(WebSocketServerInstance);
+module.exports.onDisconnect = WebSocketServerInstance.onDisconnect.bind(WebSocketServerInstance);
+module.exports.onMessage = WebSocketServerInstance.onMessage.bind(WebSocketServerInstance);
+module.exports.authorizer = WebSocketServerInstance.authorizer.bind(WebSocketServerInstance);
