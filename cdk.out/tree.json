@@ -8,17 +8,17 @@
         "id": "Tree",
         "path": "Tree"
       },
-      "Staging-liveAdminController-WebSocket": {
-        "id": "Staging-liveAdminController-WebSocket",
-        "path": "Staging-liveAdminController-WebSocket",
+      "Dev-liveAdminController-WebSocket": {
+        "id": "Dev-liveAdminController-WebSocket",
+        "path": "Dev-liveAdminController-WebSocket",
         "children": {
           "ConnectionsTable": {
             "id": "ConnectionsTable",
-            "path": "Staging-liveAdminController-WebSocket/ConnectionsTable",
+            "path": "Dev-liveAdminController-WebSocket/ConnectionsTable",
             "children": {
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/ConnectionsTable/Resource",
+                "path": "Dev-liveAdminController-WebSocket/ConnectionsTable/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::DynamoDB::Table",
                   "aws:cdk:cloudformation:props": {
@@ -41,27 +41,27 @@
                     "sseSpecification": {
                       "sseEnabled": true
                     },
-                    "tableName": "staging-liveadmincontroller-websocket"
+                    "tableName": "dev-liveadmincontroller-websocket"
                   }
                 }
               },
               "ScalingRole": {
                 "id": "ScalingRole",
-                "path": "Staging-liveAdminController-WebSocket/ConnectionsTable/ScalingRole"
+                "path": "Dev-liveAdminController-WebSocket/ConnectionsTable/ScalingRole"
               }
             }
           },
           "ConnectionsTableArn": {
             "id": "ConnectionsTableArn",
-            "path": "Staging-liveAdminController-WebSocket/ConnectionsTableArn"
+            "path": "Dev-liveAdminController-WebSocket/ConnectionsTableArn"
           },
           "ApigatewayWebsocket": {
             "id": "ApigatewayWebsocket",
-            "path": "Staging-liveAdminController-WebSocket/ApigatewayWebsocket",
+            "path": "Dev-liveAdminController-WebSocket/ApigatewayWebsocket",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Api",
               "aws:cdk:cloudformation:props": {
-                "name": "staging-liveadmincontroller-websocket",
+                "name": "dev-liveadmincontroller-websocket",
                 "protocolType": "WEBSOCKET",
                 "routeSelectionExpression": "$request.body.message"
               }
@@ -69,30 +69,30 @@
           },
           "ApigatewayWebsocketStage": {
             "id": "ApigatewayWebsocketStage",
-            "path": "Staging-liveAdminController-WebSocket/ApigatewayWebsocketStage",
+            "path": "Dev-liveAdminController-WebSocket/ApigatewayWebsocketStage",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Stage",
               "aws:cdk:cloudformation:props": {
                 "apiId": {
                   "Ref": "ApigatewayWebsocket"
                 },
-                "stageName": "staging",
+                "stageName": "dev",
                 "autoDeploy": true,
-                "description": "staging Stage"
+                "description": "development Stage"
               }
             }
           },
           "authorizer": {
             "id": "authorizer",
-            "path": "Staging-liveAdminController-WebSocket/authorizer",
+            "path": "Dev-liveAdminController-WebSocket/authorizer",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/ServiceRole",
+                "path": "Dev-liveAdminController-WebSocket/authorizer/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/ServiceRole/Resource",
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -127,11 +127,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy",
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Staging-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Dev-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -170,7 +170,7 @@
                                     "Fn::Join": [
                                       "",
                                       [
-                                        "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                                        "arn:aws:execute-api:ap-southeast-2:822618848665:",
                                         {
                                           "Ref": "ApigatewayWebsocket"
                                         },
@@ -197,27 +197,27 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/Code",
+                "path": "Dev-liveAdminController-WebSocket/authorizer/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/Code/Stage"
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/Code/AssetBucket"
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/Resource",
+                "path": "Dev-liveAdminController-WebSocket/authorizer/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F"
+                        "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -230,7 +230,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -243,7 +243,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -266,34 +266,34 @@
                         "TABLE_NAME": {
                           "Ref": "ConnectionsTable8000B8A1"
                         },
-                        "ENVIRONMENT": "staging"
+                        "ENVIRONMENT": "development"
                       }
                     },
-                    "functionName": "staging-liveadmincontroller-websocket-authorizer"
+                    "functionName": "dev-liveadmincontroller-websocket-authorizer"
                   }
                 }
               },
               "LogRetention": {
                 "id": "LogRetention",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/LogRetention",
+                "path": "Dev-liveAdminController-WebSocket/authorizer/LogRetention",
                 "children": {
                   "Provider": {
                     "id": "Provider",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/LogRetention/Provider"
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/LogRetention/Provider"
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/authorizer/LogRetention/Resource"
+                    "path": "Dev-liveAdminController-WebSocket/authorizer/LogRetention/Resource"
                   }
                 }
               },
               "LogGroup": {
                 "id": "LogGroup",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/LogGroup"
+                "path": "Dev-liveAdminController-WebSocket/authorizer/LogGroup"
               },
               "InvokeServicePrincipal(apigateway.amazonaws.com)": {
                 "id": "InvokeServicePrincipal(apigateway.amazonaws.com)",
-                "path": "Staging-liveAdminController-WebSocket/authorizer/InvokeServicePrincipal(apigateway.amazonaws.com)",
+                "path": "Dev-liveAdminController-WebSocket/authorizer/InvokeServicePrincipal(apigateway.amazonaws.com)",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                   "aws:cdk:cloudformation:props": {
@@ -312,41 +312,41 @@
           },
           "AssetParameters": {
             "id": "AssetParameters",
-            "path": "Staging-liveAdminController-WebSocket/AssetParameters",
+            "path": "Dev-liveAdminController-WebSocket/AssetParameters",
             "children": {
-              "293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3": {
-                "id": "293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3",
-                "path": "Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3",
+              "140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d": {
+                "id": "140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d",
+                "path": "Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/S3Bucket"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/S3VersionKey"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/ArtifactHash"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/ArtifactHash"
                   }
                 }
               },
               "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a": {
                 "id": "5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
-                "path": "Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
+                "path": "Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a",
                 "children": {
                   "S3Bucket": {
                     "id": "S3Bucket",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket"
                   },
                   "S3VersionKey": {
                     "id": "S3VersionKey",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey"
                   },
                   "ArtifactHash": {
                     "id": "ArtifactHash",
-                    "path": "Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash"
+                    "path": "Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash"
                   }
                 }
               }
@@ -354,15 +354,15 @@
           },
           "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a": {
             "id": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
-            "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
+            "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
+                "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
+                    "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -397,11 +397,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
+                    "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -433,21 +433,21 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+                "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage"
+                    "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket"
+                    "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+                "path": "Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -504,7 +504,7 @@
           },
           "ApiGatewayCognitoAuthorizer": {
             "id": "ApiGatewayCognitoAuthorizer",
-            "path": "Staging-liveAdminController-WebSocket/ApiGatewayCognitoAuthorizer",
+            "path": "Dev-liveAdminController-WebSocket/ApiGatewayCognitoAuthorizer",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Authorizer",
               "aws:cdk:cloudformation:props": {
@@ -536,15 +536,15 @@
           },
           "OnConnect": {
             "id": "OnConnect",
-            "path": "Staging-liveAdminController-WebSocket/OnConnect",
+            "path": "Dev-liveAdminController-WebSocket/OnConnect",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/ServiceRole",
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/ServiceRole/Resource",
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -579,11 +579,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy",
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Staging-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Dev-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -622,7 +622,7 @@
                                     "Fn::Join": [
                                       "",
                                       [
-                                        "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                                        "arn:aws:execute-api:ap-southeast-2:822618848665:",
                                         {
                                           "Ref": "ApigatewayWebsocket"
                                         },
@@ -649,27 +649,27 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/Code",
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/Code/Stage"
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/Code/AssetBucket"
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/Resource",
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F"
+                        "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -682,7 +682,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -695,7 +695,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -718,34 +718,34 @@
                         "TABLE_NAME": {
                           "Ref": "ConnectionsTable8000B8A1"
                         },
-                        "ENVIRONMENT": "staging"
+                        "ENVIRONMENT": "development"
                       }
                     },
-                    "functionName": "staging-liveadmincontroller-websocket-onconnect"
+                    "functionName": "dev-liveadmincontroller-websocket-onconnect"
                   }
                 }
               },
               "LogRetention": {
                 "id": "LogRetention",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/LogRetention",
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/LogRetention",
                 "children": {
                   "Provider": {
                     "id": "Provider",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/LogRetention/Provider"
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/LogRetention/Provider"
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnConnect/LogRetention/Resource"
+                    "path": "Dev-liveAdminController-WebSocket/OnConnect/LogRetention/Resource"
                   }
                 }
               },
               "LogGroup": {
                 "id": "LogGroup",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/LogGroup"
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/LogGroup"
               },
               "InvokeServicePrincipal(apigateway.amazonaws.com)": {
                 "id": "InvokeServicePrincipal(apigateway.amazonaws.com)",
-                "path": "Staging-liveAdminController-WebSocket/OnConnect/InvokeServicePrincipal(apigateway.amazonaws.com)",
+                "path": "Dev-liveAdminController-WebSocket/OnConnect/InvokeServicePrincipal(apigateway.amazonaws.com)",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                   "aws:cdk:cloudformation:props": {
@@ -764,7 +764,7 @@
           },
           "ConnectRouteIntegration": {
             "id": "ConnectRouteIntegration",
-            "path": "Staging-liveAdminController-WebSocket/ConnectRouteIntegration",
+            "path": "Dev-liveAdminController-WebSocket/ConnectRouteIntegration",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Integration",
               "aws:cdk:cloudformation:props": {
@@ -793,7 +793,7 @@
           },
           "ConnectRouteRoute": {
             "id": "ConnectRouteRoute",
-            "path": "Staging-liveAdminController-WebSocket/ConnectRouteRoute",
+            "path": "Dev-liveAdminController-WebSocket/ConnectRouteRoute",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Route",
               "aws:cdk:cloudformation:props": {
@@ -822,15 +822,15 @@
           },
           "OnDisconnect": {
             "id": "OnDisconnect",
-            "path": "Staging-liveAdminController-WebSocket/OnDisconnect",
+            "path": "Dev-liveAdminController-WebSocket/OnDisconnect",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole",
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole/Resource",
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -865,11 +865,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy",
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -908,7 +908,7 @@
                                     "Fn::Join": [
                                       "",
                                       [
-                                        "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                                        "arn:aws:execute-api:ap-southeast-2:822618848665:",
                                         {
                                           "Ref": "ApigatewayWebsocket"
                                         },
@@ -935,27 +935,27 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/Code",
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/Code/Stage"
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/Code/AssetBucket"
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/Resource",
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F"
+                        "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -968,7 +968,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -981,7 +981,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -1004,34 +1004,34 @@
                         "TABLE_NAME": {
                           "Ref": "ConnectionsTable8000B8A1"
                         },
-                        "ENVIRONMENT": "staging"
+                        "ENVIRONMENT": "development"
                       }
                     },
-                    "functionName": "staging-liveadmincontroller-websocket-ondisconnect"
+                    "functionName": "dev-liveadmincontroller-websocket-ondisconnect"
                   }
                 }
               },
               "LogRetention": {
                 "id": "LogRetention",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/LogRetention",
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/LogRetention",
                 "children": {
                   "Provider": {
                     "id": "Provider",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/LogRetention/Provider"
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/LogRetention/Provider"
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnDisconnect/LogRetention/Resource"
+                    "path": "Dev-liveAdminController-WebSocket/OnDisconnect/LogRetention/Resource"
                   }
                 }
               },
               "LogGroup": {
                 "id": "LogGroup",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/LogGroup"
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/LogGroup"
               },
               "InvokeServicePrincipal(apigateway.amazonaws.com)": {
                 "id": "InvokeServicePrincipal(apigateway.amazonaws.com)",
-                "path": "Staging-liveAdminController-WebSocket/OnDisconnect/InvokeServicePrincipal(apigateway.amazonaws.com)",
+                "path": "Dev-liveAdminController-WebSocket/OnDisconnect/InvokeServicePrincipal(apigateway.amazonaws.com)",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                   "aws:cdk:cloudformation:props": {
@@ -1050,7 +1050,7 @@
           },
           "DisconnectRouteIntegration": {
             "id": "DisconnectRouteIntegration",
-            "path": "Staging-liveAdminController-WebSocket/DisconnectRouteIntegration",
+            "path": "Dev-liveAdminController-WebSocket/DisconnectRouteIntegration",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Integration",
               "aws:cdk:cloudformation:props": {
@@ -1079,7 +1079,7 @@
           },
           "DisconnectRouteRoute": {
             "id": "DisconnectRouteRoute",
-            "path": "Staging-liveAdminController-WebSocket/DisconnectRouteRoute",
+            "path": "Dev-liveAdminController-WebSocket/DisconnectRouteRoute",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Route",
               "aws:cdk:cloudformation:props": {
@@ -1105,15 +1105,15 @@
           },
           "OnMessage": {
             "id": "OnMessage",
-            "path": "Staging-liveAdminController-WebSocket/OnMessage",
+            "path": "Dev-liveAdminController-WebSocket/OnMessage",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/ServiceRole",
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/ServiceRole/Resource",
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -1148,11 +1148,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy",
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Staging-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Dev-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -1191,7 +1191,7 @@
                                     "Fn::Join": [
                                       "",
                                       [
-                                        "arn:aws:execute-api:ap-southeast-2:673536892860:",
+                                        "arn:aws:execute-api:ap-southeast-2:822618848665:",
                                         {
                                           "Ref": "ApigatewayWebsocket"
                                         },
@@ -1218,27 +1218,27 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/Code",
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/Code/Stage"
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/Code/Stage"
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/Code/AssetBucket"
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/Code/AssetBucket"
                   }
                 }
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/Resource",
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
                     "code": {
                       "s3Bucket": {
-                        "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F"
+                        "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941"
                       },
                       "s3Key": {
                         "Fn::Join": [
@@ -1251,7 +1251,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -1264,7 +1264,7 @@
                                   "Fn::Split": [
                                     "||",
                                     {
-                                      "Ref": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96"
+                                      "Ref": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A"
                                     }
                                   ]
                                 }
@@ -1287,34 +1287,34 @@
                         "TABLE_NAME": {
                           "Ref": "ConnectionsTable8000B8A1"
                         },
-                        "ENVIRONMENT": "staging"
+                        "ENVIRONMENT": "development"
                       }
                     },
-                    "functionName": "staging-liveadmincontroller-websocket-onmessage"
+                    "functionName": "dev-liveadmincontroller-websocket-onmessage"
                   }
                 }
               },
               "LogRetention": {
                 "id": "LogRetention",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/LogRetention",
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/LogRetention",
                 "children": {
                   "Provider": {
                     "id": "Provider",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/LogRetention/Provider"
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/LogRetention/Provider"
                   },
                   "Resource": {
                     "id": "Resource",
-                    "path": "Staging-liveAdminController-WebSocket/OnMessage/LogRetention/Resource"
+                    "path": "Dev-liveAdminController-WebSocket/OnMessage/LogRetention/Resource"
                   }
                 }
               },
               "LogGroup": {
                 "id": "LogGroup",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/LogGroup"
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/LogGroup"
               },
               "InvokeServicePrincipal(apigateway.amazonaws.com)": {
                 "id": "InvokeServicePrincipal(apigateway.amazonaws.com)",
-                "path": "Staging-liveAdminController-WebSocket/OnMessage/InvokeServicePrincipal(apigateway.amazonaws.com)",
+                "path": "Dev-liveAdminController-WebSocket/OnMessage/InvokeServicePrincipal(apigateway.amazonaws.com)",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
                   "aws:cdk:cloudformation:props": {
@@ -1333,7 +1333,7 @@
           },
           "OnMessageRouteIntegration": {
             "id": "OnMessageRouteIntegration",
-            "path": "Staging-liveAdminController-WebSocket/OnMessageRouteIntegration",
+            "path": "Dev-liveAdminController-WebSocket/OnMessageRouteIntegration",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Integration",
               "aws:cdk:cloudformation:props": {
@@ -1362,7 +1362,7 @@
           },
           "OnMessageRouteRoute": {
             "id": "OnMessageRouteRoute",
-            "path": "Staging-liveAdminController-WebSocket/OnMessageRouteRoute",
+            "path": "Dev-liveAdminController-WebSocket/OnMessageRouteRoute",
             "attributes": {
               "aws:cdk:cloudformation:type": "AWS::ApiGatewayV2::Route",
               "aws:cdk:cloudformation:props": {
@@ -1388,7 +1388,7 @@
           },
           "WebSocketURI": {
             "id": "WebSocketURI",
-            "path": "Staging-liveAdminController-WebSocket/WebSocketURI"
+            "path": "Dev-liveAdminController-WebSocket/WebSocketURI"
           }
         }
       }

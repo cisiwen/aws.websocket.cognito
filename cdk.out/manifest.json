@@ -7,24 +7,24 @@
         "file": "tree.json"
       }
     },
-    "Staging-liveAdminController-WebSocket": {
+    "Dev-liveAdminController-WebSocket": {
       "type": "aws:cloudformation:stack",
-      "environment": "aws://673536892860/ap-southeast-2",
+      "environment": "aws://822618848665/ap-southeast-2",
       "properties": {
-        "templateFile": "Staging-liveAdminController-WebSocket.template.json"
+        "templateFile": "Dev-liveAdminController-WebSocket.template.json"
       },
       "metadata": {
-        "/Staging-liveAdminController-WebSocket": [
+        "/Dev-liveAdminController-WebSocket": [
           {
             "type": "aws:cdk:asset",
             "data": {
-              "path": "asset.293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3",
-              "id": "293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3",
+              "path": "asset.140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d",
+              "id": "140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d",
               "packaging": "zip",
-              "sourceHash": "293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3",
-              "s3BucketParameter": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F",
-              "s3KeyParameter": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96",
-              "artifactHashParameter": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3ArtifactHashC13E06A4"
+              "sourceHash": "140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d",
+              "s3BucketParameter": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941",
+              "s3KeyParameter": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A",
+              "artifactHashParameter": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dArtifactHashB783290E"
             },
             "trace": [
               "ConstructNode.addMetadata (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.ts:384:92)",
@@ -35,7 +35,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -76,7 +76,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -102,7 +102,7 @@
               },
               {
                 "Key": "Environment",
-                "Value": "Staging"
+                "Value": "Development"
               },
               {
                 "Key": "Owner",
@@ -138,16 +138,16 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ConnectionsTable": [
+        "/Dev-liveAdminController-WebSocket/ConnectionsTable": [
           {
             "type": "aws:cdk:hasPhysicalName",
-            "data": "staging-liveadmincontroller-websocket",
+            "data": "dev-liveadmincontroller-websocket",
             "trace": [
               "ConstructNode.addMetadata (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\construct-compat.ts:384:92)",
               "new Table (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\aws-dynamodb\\lib\\table.ts:687:38)",
               "WebSocketStack.addDynamoDB (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:85:23)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:22:27)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -165,7 +165,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ConnectionsTable/Resource": [
+        "/Dev-liveAdminController-WebSocket/ConnectionsTable/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ConnectionsTable8000B8A1",
@@ -173,7 +173,7 @@
               "new Table (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\aws-dynamodb\\lib\\table.ts:669:18)",
               "WebSocketStack.addDynamoDB (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:85:23)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:22:27)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -191,14 +191,14 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ConnectionsTableArn": [
+        "/Dev-liveAdminController-WebSocket/ConnectionsTableArn": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ConnectionsTableArn",
             "trace": [
               "WebSocketStack.addDynamoDB (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:86:9)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:22:27)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -216,14 +216,14 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ApigatewayWebsocket": [
+        "/Dev-liveAdminController-WebSocket/ApigatewayWebsocket": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApigatewayWebsocket",
             "trace": [
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:105:19)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -241,14 +241,14 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ApigatewayWebsocketStage": [
+        "/Dev-liveAdminController-WebSocket/ApigatewayWebsocketStage": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApigatewayWebsocketStage",
             "trace": [
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:107:23)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -266,7 +266,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/authorizer/ServiceRole/Resource": [
+        "/Dev-liveAdminController-WebSocket/authorizer/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "authorizerServiceRoleC3069BB4",
@@ -276,7 +276,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -294,7 +294,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy/Resource": [
+        "/Dev-liveAdminController-WebSocket/authorizer/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "authorizerServiceRoleDefaultPolicyABE8B38C",
@@ -307,7 +307,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:44:24)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -325,7 +325,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/authorizer/Resource": [
+        "/Dev-liveAdminController-WebSocket/authorizer/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "authorizerD23CB5CD",
@@ -334,7 +334,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -352,7 +352,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/authorizer/LogRetention/Resource": [
+        "/Dev-liveAdminController-WebSocket/authorizer/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "authorizerLogRetention88D7ABCA",
@@ -362,7 +362,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -380,7 +380,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/authorizer/InvokeServicePrincipal(apigateway.amazonaws.com)": [
+        "/Dev-liveAdminController-WebSocket/authorizer/InvokeServicePrincipal(apigateway.amazonaws.com)": [
           {
             "type": "aws:cdk:logicalId",
             "data": "authorizerInvokeServicePrincipalapigatewayamazonawscom51DEC98E",
@@ -392,7 +392,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:41:16)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -410,10 +410,10 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/S3Bucket": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3Bucket533DDA7F",
+            "data": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3Bucket23F78941",
             "trace": [
               "new FileAssetParameters (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.ts:16:32)",
               "WebSocketStack.addFileAsset (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\stack.ts:540:16)",
@@ -423,7 +423,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -441,10 +441,10 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/S3VersionKey": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3S3VersionKeyDEEEEA96",
+            "data": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dS3VersionKeyE956791A",
             "trace": [
               "new FileAssetParameters (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.ts:21:31)",
               "WebSocketStack.addFileAsset (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\stack.ts:540:16)",
@@ -454,7 +454,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -472,10 +472,10 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3/ArtifactHash": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960d/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
-            "data": "AssetParameters293df46f4239c76b1735e2c8b166746653ce6703d78e95930b091c132ca204c3ArtifactHashC13E06A4",
+            "data": "AssetParameters140487c1793ec87456a8ac1df895c74e0d483c3e242b4a0d6e541cf70a98960dArtifactHashB783290E",
             "trace": [
               "new FileAssetParameters (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\private\\asset-parameters.ts:26:36)",
               "WebSocketStack.addFileAsset (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\@aws-cdk\\core\\lib\\stack.ts:540:16)",
@@ -485,7 +485,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -503,7 +503,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3Bucket": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3Bucket4E933C7F",
@@ -520,7 +520,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -538,7 +538,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/S3VersionKey": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aS3VersionKeyB83CC434",
@@ -555,7 +555,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -573,7 +573,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash": [
+        "/Dev-liveAdminController-WebSocket/AssetParameters/5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22a/ArtifactHash": [
           {
             "type": "aws:cdk:logicalId",
             "data": "AssetParameters5741f85917ffca30b209ad61e375d3d3bae0457270071f7aca8ca81be19bd22aArtifactHash5A536F97",
@@ -590,7 +590,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -608,7 +608,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
+        "/Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
@@ -622,7 +622,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -640,7 +640,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
+        "/Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
@@ -653,7 +653,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -671,7 +671,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
+        "/Dev-liveAdminController-WebSocket/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
@@ -684,7 +684,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:113:35)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -702,7 +702,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ApiGatewayCognitoAuthorizer": [
+        "/Dev-liveAdminController-WebSocket/ApiGatewayCognitoAuthorizer": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ApiGatewayCognitoAuthorizer",
@@ -710,7 +710,7 @@
               "WebSocketStack.createAuthorizer (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:90:31)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:114:31)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -728,7 +728,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnConnect/ServiceRole/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnConnect/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnConnectServiceRoleCE52AE06",
@@ -738,7 +738,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:116:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -756,7 +756,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnConnect/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnConnectServiceRoleDefaultPolicyB37A8C69",
@@ -769,7 +769,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:44:24)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:116:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -787,7 +787,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnConnect/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnConnect/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnConnect5B7981D4",
@@ -796,7 +796,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:116:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -814,7 +814,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnConnect/LogRetention/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnConnect/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnConnectLogRetention54595B8E",
@@ -824,7 +824,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:116:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -842,7 +842,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnConnect/InvokeServicePrincipal(apigateway.amazonaws.com)": [
+        "/Dev-liveAdminController-WebSocket/OnConnect/InvokeServicePrincipal(apigateway.amazonaws.com)": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnConnectInvokeServicePrincipalapigatewayamazonawscom2B44D7D9",
@@ -854,7 +854,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:41:16)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:116:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -872,7 +872,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ConnectRouteIntegration": [
+        "/Dev-liveAdminController-WebSocket/ConnectRouteIntegration": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ConnectRouteIntegration",
@@ -880,7 +880,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:62:43)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:117:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -898,7 +898,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/ConnectRouteRoute": [
+        "/Dev-liveAdminController-WebSocket/ConnectRouteRoute": [
           {
             "type": "aws:cdk:logicalId",
             "data": "ConnectRouteRoute",
@@ -906,7 +906,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:72:31)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:117:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -924,7 +924,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnDisconnectServiceRole626BB7AE",
@@ -934,7 +934,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:119:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -952,7 +952,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnDisconnect/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnDisconnectServiceRoleDefaultPolicy06605459",
@@ -965,7 +965,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:44:24)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:119:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -983,7 +983,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnDisconnect/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnDisconnect/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnDisconnectDDB1160C",
@@ -992,7 +992,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:119:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1010,7 +1010,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnDisconnect/LogRetention/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnDisconnect/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnDisconnectLogRetention041913C5",
@@ -1020,7 +1020,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:119:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1038,7 +1038,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnDisconnect/InvokeServicePrincipal(apigateway.amazonaws.com)": [
+        "/Dev-liveAdminController-WebSocket/OnDisconnect/InvokeServicePrincipal(apigateway.amazonaws.com)": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnDisconnectInvokeServicePrincipalapigatewayamazonawscomAAEE492B",
@@ -1050,7 +1050,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:41:16)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:119:38)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1068,7 +1068,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/DisconnectRouteIntegration": [
+        "/Dev-liveAdminController-WebSocket/DisconnectRouteIntegration": [
           {
             "type": "aws:cdk:logicalId",
             "data": "DisconnectRouteIntegration",
@@ -1076,7 +1076,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:62:43)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:120:39)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1094,7 +1094,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/DisconnectRouteRoute": [
+        "/Dev-liveAdminController-WebSocket/DisconnectRouteRoute": [
           {
             "type": "aws:cdk:logicalId",
             "data": "DisconnectRouteRoute",
@@ -1102,7 +1102,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:72:31)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:120:39)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1120,7 +1120,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessage/ServiceRole/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnMessage/ServiceRole/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageServiceRoleF2128E59",
@@ -1130,7 +1130,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:122:36)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1148,7 +1148,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnMessage/ServiceRole/DefaultPolicy/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageServiceRoleDefaultPolicy0810DFDA",
@@ -1161,7 +1161,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:44:24)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:122:36)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1179,7 +1179,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessage/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnMessage/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageF7C2AAE0",
@@ -1188,7 +1188,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:122:36)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1206,7 +1206,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessage/LogRetention/Resource": [
+        "/Dev-liveAdminController-WebSocket/OnMessage/LogRetention/Resource": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageLogRetention6F03ED24",
@@ -1216,7 +1216,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:30:22)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:122:36)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1234,7 +1234,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessage/InvokeServicePrincipal(apigateway.amazonaws.com)": [
+        "/Dev-liveAdminController-WebSocket/OnMessage/InvokeServicePrincipal(apigateway.amazonaws.com)": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageInvokeServicePrincipalapigatewayamazonawscom209E79CE",
@@ -1246,7 +1246,7 @@
               "WebSocketStack.createLambda (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:41:16)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:122:36)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1264,7 +1264,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessageRouteIntegration": [
+        "/Dev-liveAdminController-WebSocket/OnMessageRouteIntegration": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageRouteIntegration",
@@ -1272,7 +1272,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:62:43)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:123:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1290,7 +1290,7 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/OnMessageRouteRoute": [
+        "/Dev-liveAdminController-WebSocket/OnMessageRouteRoute": [
           {
             "type": "aws:cdk:logicalId",
             "data": "OnMessageRouteRoute",
@@ -1298,7 +1298,7 @@
               "WebSocketStack.addRoute (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:72:31)",
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:123:37)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
@@ -1316,14 +1316,14 @@
             ]
           }
         ],
-        "/Staging-liveAdminController-WebSocket/WebSocketURI": [
+        "/Dev-liveAdminController-WebSocket/WebSocketURI": [
           {
             "type": "aws:cdk:logicalId",
             "data": "WebSocketURI",
             "trace": [
               "WebSocketStack.createApiGateway (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:125:9)",
               "new WebSocketStack (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\lib\\websocket.ts:23:14)",
-              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\staging.ts:25:29)",
+              "Object.<anonymous> (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\aws\\bin\\development.ts:25:29)",
               "Module._compile (internal/modules/cjs/loader.js:959:30)",
               "Module.m._compile (C:\\Projects\\bytesmedia\\aws.websocket.cognito\\node_modules\\ts-node\\src\\index.ts:439:23)",
               "Module._extensions..js (internal/modules/cjs/loader.js:995:10)",
