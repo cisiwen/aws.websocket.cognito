@@ -20,7 +20,7 @@
     "@aws-cdk/aws-apigatewayv2": "^1.32.2",
     "@aws-cdk/aws-iam": "^1.32.2",
     "@types/jsonwebtoken": "^8.3.9",
-    "aws-sdk": "^2.647.0",
+    "aws-sdk": "^2.814.0",
     "jsonwebtoken": "^8.5.1",
     "jwk-to-pem": "^2.0.3"
   },
