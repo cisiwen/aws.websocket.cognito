@@ -24,7 +24,7 @@
     "@aws-cdk/aws-apigatewayv2": "^1.32.2",
     "@aws-cdk/aws-iam": "^1.32.2",
     "@types/jsonwebtoken": "^8.3.9",
-    "aws-sdk": "^2.647.0",
+    "aws-sdk": "^2.814.0",
     "@aws-cdk/aws-apigateway": "^1.32.2",
     "@aws-cdk/aws-dynamodb": "^1.32.2",
     "@aws-cdk/aws-ec2": "^1.32.2",
